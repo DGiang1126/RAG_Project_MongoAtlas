@@ -53,10 +53,9 @@ for pdf_file, text in all_text:
         f.write(text)
 
 def clean_text(text, source):
-    # 1. Remove page numbers
     text = re.sub(r'Page \d+', '', text, flags=re.IGNORECASE)
     
-    # 2. Remove headers/footers based on source
+    # Remove headers/footers based on source
     if "TNG_QUAN" in source:
         text = re.sub(r'Trung Tâm Thông tin Khoa học thống kê|Viện KHTK|KS\s*[\w\s]+', '', text, flags=re.IGNORECASE)
     elif "KimAnh" in source:
@@ -72,23 +71,16 @@ def clean_text(text, source):
     elif "what-is" in source:
         text = re.sub(r'Oracle Corporation', '', text, flags=re.IGNORECASE)
     
-    # 3. Remove URLs, DOIs, email domains, and publication metadata
+    # Remove URLs, DOIs, email domains, and publication metadata
     text = re.sub(r'https?://\S+|www\.\S+|doi\s*[\d/\.\-]+|\b[\w\s\.-]+@\w+\.[\w\.]+|\b[\w\s]+\.(?:com|edu|org)\b|see discussions stats and author profiles for this publication at|all content following this page was', '', text, flags=re.IGNORECASE)
     
-    # 4. Remove publication info
+    # Remove publication info
     text = re.sub(r'volume\s*\d+\s*issue\s*[\w\s\-()]+?\s*pp\s*\d+\s*-\s*\d+\s*\d{4}|conference\s*paper\s*\w+\s*\d{4}|citations\s*reads|\b\d+\s*\d+\b', '', text, flags=re.IGNORECASE)
 
+    # Remove specific keywords
     text = re.sub(r'\b(volume|issue|pp|doi|abstract|keywords|citations?|reads?|uploaded by|see (profile|discussions)|author profiles?|conference paper|university|minot state|outlook\.com|@|\.edu|\.org|\.com)\b', '', text, flags=re.IGNORECASE)
     
-    # 5. Remove author info and related metadata
-    text = re.sub(r'\b\d+\s*publications\b|\bsee\s*profile\b|\buploaded\s*by\s*[\w\s]+|\b\d+\s*citations\b|\babstract\b|\bkeywords\b|\b\d+\s*author\b', '', text, flags=re.IGNORECASE)
     
-    # 6. Remove cid characters
-    text = re.sub(r'cid[:\s\-]*[\w\d]+', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'\b(cid)\b', '', text, flags=re.IGNORECASE)  # Loại cả từ đơn lẻ còn sót
-
-    
-    # 7. Split into lines before further cleaning
     lines = text.split('\n')
     cleaned_lines = []
     for line in lines:
@@ -138,8 +130,6 @@ def check_cleaned_text(cleaned_text, filename):
     issues = []
     if 'https' in cleaned_text or 'www' in cleaned_text:
         issues.append("URL still present")
-    if 'cid' in cleaned_text.lower():
-        issues.append("CID characters still present")
     if any(keyword in cleaned_text.lower() for keyword in ['university', 'conference paper', 'kỷ yếu', '@', 'volume', 'issue', 'pp', 'abstract', 'keywords', 'outlook com', 'minotstateu edu', 'khoa học', 'lần 6', 'lần thứ 6', 'trường đại học', 'tháng 06', 'author']):
         issues.append("Metadata still present")
     if issues:

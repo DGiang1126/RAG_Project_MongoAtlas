@@ -61,7 +61,7 @@ def inspect_documents(data_dir):
                 if not content.strip():
                     logger.warning(f"File {filename} is empty")
                     continue
-                logger.info(f"File: {filename}, Length: {len(content)}, Sample: {content[:200]}")
+                # logger.info(f"File: {filename}, Length: {len(content)}, Sample: {content[:200]}")
                 valid_files.append(filename)
         except UnicodeDecodeError as e:
             logger.error(f"UnicodeDecodeError in {filename}: {str(e)}")
@@ -162,8 +162,6 @@ def create_or_load_vector_store(data_dir="backend/data/documents_cleaned", model
 
     if not check_text_index(client, "rag_database", "chunks"):
         logger.info("Search index text_index not found, relying on existing configuration")
-        # Không tạo text index thông thường
-        # Nếu cần tạo mới search index, có thể thêm mã gọi API Atlas Search
     else:
         logger.info("Search index text_index is ready for use")
 

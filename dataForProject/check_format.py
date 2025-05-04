@@ -9,7 +9,7 @@ def check_text_pdf(pdf_path):
     except:
         return False, "Scan PDF"
 
-data_dir = "data/bigdata/"
+data_dir = "dataForProject/data/bigdata/"
 for pdf_file in os.listdir(data_dir):
     if pdf_file.endswith(".pdf"):
         is_text, pdf_type = check_text_pdf(os.path.join(data_dir, pdf_file))

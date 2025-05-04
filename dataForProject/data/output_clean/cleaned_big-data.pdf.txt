@@ -536,7 +536,7 @@ companies often fail to understand what big data is its benefits and more import
 the human infrastructure required to realize its true potential without a clear understanding of the concept
 of big data adopting and implementing a project using big data tools can seriously challenge its success
 we can say that handling big data is complex and companies should identify what they aim to achieve when
-they de to invest in technologies using big data
+they decide to invest in technologies using big data
 the first challenge that a company is likely to face is making sense of the complex big data landscape and
 reducing their dependence on legacy systems even though the industry is shifting its focus to the digital
 age with adoption of iot and artificial intelligence it is still a long way before the full potential of big data
@@ -577,7 +577,7 @@ number of connected devices within the industry data security has also become a 
 this risk is greater than ever big data analysis uses huge amounts of data for analysis and mining purposes
 to reach some meaningful conclusion and security of this big data can be enhanced by using techniques
 with newer secure technologies such as blockchain and data cleanroom it is possible to achieve both
-partners that is completely secure from external access and where each partner can de the level of
+partners that is completely secure from external access and where each partner can decide the level of
 visibility to their data blockchain a decentralized distributed database is one of the most secure options
 overlooked challenge is the ethical use of data the legal infrastructure has not kept up with the rapid
 development in technology which is able to collect and store vast amounts of consumer data with or without
